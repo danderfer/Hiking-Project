@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD10_lyiuqCuFpYvFoU6yhNz7wEEsG0b6s&callback=initMap" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Route Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="controls">
+        <input type="text" id="startPoint" placeholder="Start Point">
+        <input type="text" id="endPoint" placeholder="End Point">
+        <input type="number" id="walkingSpeed" placeholder="Walking Speed (mph)">
+        <button onclick="calculateRoute()">Calculate Route</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
