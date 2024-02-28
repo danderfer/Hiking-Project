@@ -12,13 +12,18 @@ function calculateRoute() {
     const startPoint = document.getElementById("startPoint").value;
     const endPoint = document.getElementById("endPoint").value;
     const walkingSpeed = document.getElementById("walkingSpeed").value;
+    calculateRoute(startPoint,endPoint,walkingSpeed);
 
-    // Call backend API to calculate route based on inputs
-    // (This part should be implemented in the backend)
-    fetch(`/calculate-route?start=${startPoint}&end=${endPoint}&speed=${walkingSpeed}`)
-        .then(response => response.json())
-        .then(data => {
-            // Handle response data and display route on map
-        })
-        .catch(error => console.error("Error:", error));
+   
+}
+
+function calculateRoute(start, end, speed) {
+    // Implement route calculation logic here
+    // (This is just a placeholder)
+    return {
+        start,
+        end,
+        speed,
+        route: "Sample route data"
+    };
 }
