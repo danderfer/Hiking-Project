@@ -16,7 +16,7 @@
     text-align: center;
 }
 .container {
-    margin-top: 50%;
+    margin-top: 5%;
 }
 .value-box {
     border: 4px solid #ccc;
@@ -29,6 +29,7 @@
 .title {
     font-weight: bold;
     font-size: 100%;
+    margin-top: -5%;
     margin-bottom: 5%;
 }
 .value {
