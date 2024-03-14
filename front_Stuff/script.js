@@ -66,3 +66,15 @@ function calculateRoute(start, end, speed) {
         route: "Sample route data"
     };
 }
+
+const slider = document.getElementById('slider');
+    const sliderValue = document.getElementById('slider-value');
+
+    slider.addEventListener('input', function() {
+        sliderValue.textContent = this.value;
+    });
+
+    // Additional event listener for 'change' event because firefox
+    slider.addEventListener('change', function() {
+        sliderValue.textContent = this.value;
+    });

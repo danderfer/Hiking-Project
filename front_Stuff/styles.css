@@ -39,3 +39,12 @@
     font-weight: bold;
     font-size: 150%;
 }
+
+input[type="range"] {
+    width: 100%;
+}
+span {
+    display: block;
+    text-align: center;
+    margin-top: 1%;
+}
