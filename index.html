@@ -10,11 +10,9 @@
 <body id="body">
     <div id="map"></div>
     <div id="controls">
-        <input type="text" id="startPoint" placeholder="Start Point">
-        <input type="text" id="endPoint" placeholder="End Point">
-        <input type="number" id="walkingSpeed" placeholder="Walking Speed (mph)">
+       <center> <p>Walking Speed (mph)</p></center>
         <input type="range" min="1" max="100" value="5" class="slider" id="myRange" oninput="updateValue(this.value)">
-        <span id="slider-value">5</span>
+        <center><span id="sliderValue">5</span></center>
         <button onclick="calculateRoute()">Calculate Route</button>
     </div>
 
