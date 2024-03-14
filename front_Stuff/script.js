@@ -55,11 +55,38 @@ function calculateRoute() {
    
 }
 
-function calculateRoute(start,end,speed) {
-  
+function calculateRoute(start, end, speed) {
+    const directionsService = new google.maps.DirectionsService();
+    const request = {
+        origin: start.getPosition(), // Get start position
+        destination: end.getPosition(), // Get destination position
+        travelMode: google.maps.TravelMode.WALKING, // Specify travel mode
+    };
 
-   
+    directionsService.route(request, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            const route = response.routes[0]; // Get the first route
+            const duration = route.legs[0].duration.text; // Get duration of the route
+            const distance = route.legs[0].distance.text; // Get distance of the route
+
+            // Calculate estimated time based on walking speed
+            const estimatedTime = (parseFloat(distance) / speed).toFixed(1); // in hours
+
+            // Display route information
+            document.getElementById("speed").innerHTML = speed;
+            document.getElementById("miles").innerHTML = distance;
+            document.getElementById("time").innerHTML = duration;
+
+            // Display route on map
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            directionsRenderer.setDirections(response);
+        } else {
+            alert("Error: " + status); // Display error message if route calculation fails
+        }
+    });
 }
+
 
 function updateValue(value) {
     document.getElementById("sliderValue").innerText = value; // Update span text with slider value
