@@ -94,6 +94,29 @@ function calculateRoute(start, end, speed) {
     });
 }
 
+function calculateStraightLineDistance(start, end) {
+    // Convert latitude and longitude from degrees to radians
+    const lat1 = start.lat() * Math.PI / 180;
+    const lon1 = start.lng() * Math.PI / 180;
+    const lat2 = end.lat() * Math.PI / 180;
+    const lon2 = end.lng() * Math.PI / 180;
+
+    // Earth radius in kilometers
+    const R = 6371; 
+
+    // Haversine formula
+    const dLat = lat2 - lat1;
+    const dLon = lon2 - lon1;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1) * Math.cos(lat2) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in kilometers
+
+    return distance;
+}
+
+
 
 function updateValue(value) {
     document.getElementById("sliderValue").innerText = value; // Update span text with slider value
