@@ -55,7 +55,7 @@ function calculateRoute() {
    
 }
 
-function calculateRoute(start, end, speed) {
+function calculateRoute() {
     // Implement route calculation logic here
 
     // (This is just a placeholder)
