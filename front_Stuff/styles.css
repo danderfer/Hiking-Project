@@ -2,12 +2,16 @@
     background-color: #2dc79e;
 }
 span{
-    font-weight: bold;
+    font-weight: bolder;
     color: #ff8c00;
+     -webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: rgb(49, 45, 26);
 }
 p { 
-    font-weight: bold;
+    font-weight: bolder;
     color: #ff8c00;
+    -webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: rgb(49, 45, 26);
   }
 
 #map {
