@@ -28,7 +28,7 @@ async function initMap() {
 
 function placeMarker(location) {
     // Create a marker
-    let marker = new ggoogle.maps.marker.AdvancedMarkerElement({
+    let marker = new google.maps.marker.AdvancedMarkerElement({
         position: location,
         map: map
     });
