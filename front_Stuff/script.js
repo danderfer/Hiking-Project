@@ -1,6 +1,8 @@
 let map;
 let startMarker;
 let destinationMarker;
+let start;
+let end;
 
 async function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -10,12 +12,15 @@ async function initMap() {
 
     google.maps.event.addListener(map, 'click', function(event) {
         if (!startMarker) {
+            start = event.latLng;
             startMarker = placeMarker(event.latLng); // Place start marker
         } else if (!destinationMarker) {
+            end = event.latLng;
             destinationMarker = placeMarker(event.latLng); // Place destination marker
         } else {
             // If both start and destination markers are set, remove all markers and reset
             clearMarkers();
+            start = event.latLng;
             startMarker = placeMarker(event.latLng); // Place start marker
         }
     });
@@ -38,17 +43,19 @@ function clearMarkers() {
     if (startMarker) {
         startMarker.setMap(null);
         startMarker = null;
+        start = null;
     }
     if (destinationMarker) {
         destinationMarker.setMap(null);
         destinationMarker = null;
+        end = null;
     }
 }
 
 function calculateRoute() {
     // Fetch start and end points, walking speed from input fields
-    const startPoint = startMarker;
-    const endPoint = destinationMarker;
+    const startPoint = start;
+    const endPoint = end;
     const walkingSpeed = document.getElementById("sliderValue").value;
     calculateRoute(startPoint,endPoint,walkingSpeed);
 
@@ -58,8 +65,8 @@ function calculateRoute() {
 function calculateRoute(start, end, speed) {
     const directionsService = new google.maps.DirectionsService();
     const request = {
-        origin: start.getPosition(), // Get start position
-        destination: end.getPosition(), // Get destination position
+        origin: start, // Get start position
+        destination: end, // Get destination position
         travelMode: google.maps.TravelMode.WALKING, // Specify travel mode
     };
 
