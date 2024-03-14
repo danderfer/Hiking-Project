@@ -2,7 +2,7 @@ let map;
 let startMarker;
 let destinationMarker;
 
-function initMap() {
+async function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 34.0522, lng: -118.2437 }, // Default center (Los Angeles)
         zoom: 12, // Default zoom level
