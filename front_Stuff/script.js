@@ -67,14 +67,6 @@ function calculateRoute(start, end, speed) {
     };
 }
 
-const slider = document.getElementById('slider');
-    const sliderValue = document.getElementById('slider-value');
-
-    slider.addEventListener('input', function() {
-        sliderValue.textContent = this.value;
-    });
-
-    // Additional event listener for 'change' event because firefox
-    slider.addEventListener('change', function() {
-        sliderValue.textContent = this.value;
-    });
+function updateValue(value) {
+    document.getElementById("sliderValue").innerText = value; // Update span text with slider value
+  }
