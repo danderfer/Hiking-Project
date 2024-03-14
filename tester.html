@@ -1,58 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calculate Distance and Time</title>
+    <title>Distance Calculation</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD10_lyiuqCuFpYvFoU6yhNz7wEEsG0b6s&callback=initMap"></script>
-</head>
-<body>
-    <div>
-        <label for="startPoint">Start Point:</label>
-        <input type="text" id="startPoint" placeholder="Enter start point">
-    </div>
-    <div>
-        <label for="endPoint">End Point:</label>
-        <input type="text" id="endPoint" placeholder="Enter end point">
-    </div>
-    <div>
-        <label for="walkingSpeed">Travel Speed (km/h):</label>
-        <input type="number" id="walkingSpeed" placeholder="Enter travel speed" value="5">
-    </div>
-    <button onclick="calculateRoute()">Calculate</button>
-
-    <div id="result"></div>
-
     <script>
-        function calculateRoute() {
-            const startPoint = document.getElementById("startPoint").value;
-            const endPoint = document.getElementById("endPoint").value;
-            const walkingSpeed = document.getElementById("walkingSpeed").value;
+        // Initialize Google Maps API
+        function initMap() {
+            // Create a new instance of DirectionsService
+            var directionsService = new google.maps.DistanceMatrixService();
+            
+            // Define coordinates
+            var origin = new google.maps.LatLng(40.712776, -74.005974); // Example: New York City
+            var destination = new google.maps.LatLng(34.052235, -118.243683); // Example: Los Angeles
+            
+            // Define request object
+            var request = {
+                origins: [origin],
+                destinations: [destination],
+                travelMode: google.maps.TravelMode.DRIVING, // You can change the travel mode as needed
+                unitSystem: google.maps.UnitSystem.METRIC // You can change the unit system as needed
+            };
 
-            const service = new google.maps.DistanceMatrixService();
-            service.getDistanceMatrix({
-                origins: [startPoint],
-                destinations: [endPoint],
-                travelMode: google.maps.TravelMode.WALKING,
-            }, (response, status) => {
-                if (status === 'OK') {
-                    const distance = response.rows[0].elements[0].distance.value; // in meters
-                    const duration = response.rows[0].elements[0].duration.value; // in seconds
-
-                    const distanceInKm = distance / 1000; // convert to kilometers
-                    const durationInHours = duration / 3600; // convert to hours
-
-                    const travelSpeed = walkingSpeed; // in km/h
-
-                    const timeInHours = distanceInKm / travelSpeed; // time = distance / speed
-                    const timeInMinutes = timeInHours * 60; // convert hours to minutes
-
-                    document.getElementById("result").innerHTML = `
-                        Distance: ${distanceInKm.toFixed(2)} km<br>
-                        Time: ${timeInMinutes.toFixed(2)} minutes`;
+            // Call the distance matrix service
+            directionsService.getDistanceMatrix(request, function(response, status) {
+                if (status == google.maps.DistanceMatrixStatus.OK) {
+                    var distance = response.rows[0].elements[0].distance.text;
+                    var duration = response.rows[0].elements[0].duration.text;
+                    console.log("Distance: " + distance);
+                    console.log("Duration: " + duration);
                 } else {
-                    document.getElementById("result").innerHTML = "Error: " + status;
+                    console.log("Error: " + status);
                 }
             });
         }
     </script>
+</head>
+<body>
+    <!-- This is just a placeholder for Google Maps to load -->
+    <div id="map" style="display: none;"></div>
 </body>
 </html>

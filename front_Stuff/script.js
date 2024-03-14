@@ -47,24 +47,18 @@ function clearMarkers() {
 
 function calculateRoute() {
     // Fetch start and end points, walking speed from input fields
-    const startPoint = document.getElementById("startPoint").value;
-    const endPoint = document.getElementById("endPoint").value;
-    const walkingSpeed = document.getElementById("walkingSpeed").value;
+    const startPoint = startMarker;
+    const endPoint = destinationMarker;
+    const walkingSpeed = document.getElementById("sliderValue").value;
     calculateRoute(startPoint,endPoint,walkingSpeed);
 
    
 }
 
-function calculateRoute() {
-    // Implement route calculation logic here
+function calculateRoute(start,end,speed) {
+  
 
-    // (This is just a placeholder)
-    return {
-        start,
-        end,
-        speed,
-        route: "Sample route data"
-    };
+   
 }
 
 function updateValue(value) {
